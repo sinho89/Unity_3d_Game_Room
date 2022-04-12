@@ -11,6 +11,8 @@ public class LobbyScene : BaseScene
         SceneSetting();
         CommonSetting();
 
+        Managers.Sound.Play("BGM/LobbyBgm", Defines.Sounds.Bgm, 0.5f);
+
     }
 
     protected override void SceneSetting()

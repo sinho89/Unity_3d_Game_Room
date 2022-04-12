@@ -15,7 +15,7 @@ public class SoundManager
     {
         GameObject root = GameObject.Find("@Sound");
 
-        if(root != null)
+        if(root == null)
         {
             root = new GameObject { name = "@Sound" };
             Object.DontDestroyOnLoad(root);
@@ -57,13 +57,13 @@ public class SoundManager
         return audioClip;
     }
 
-    public void Play(string path, Defines.Sounds type = Defines.Sounds.Effect, float pitch = 1.0f)
+    public void Play(string path, Defines.Sounds type = Defines.Sounds.Effect, float volume = 1.0f, float pitch = 1.0f)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
-        Play(audioClip, type, pitch);
+        Play(audioClip, type, volume, pitch);
     }
 
-    public void Play(AudioClip audioClip, Defines.Sounds type = Defines.Sounds.Effect, float pitch = 1.0f)
+    public void Play(AudioClip audioClip, Defines.Sounds type = Defines.Sounds.Effect, float volume = 1.0f, float pitch = 1.0f)
     {
         if (audioClip == null)
             return;
@@ -76,12 +76,14 @@ public class SoundManager
 
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.volume = volume;
             audioSource.Play();
         }
         else
         {
             AudioSource audioSource = _audioSources[(int)Defines.Sounds.Effect];
             audioSource.pitch = pitch;
+            audioSource.volume = volume;
             audioSource.PlayOneShot(audioClip);
         }
     }

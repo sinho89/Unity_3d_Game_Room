@@ -1,9 +1,12 @@
+#define MOUSE_SCREEN_ROTATE_CAMERA
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+
     private Transform _centralAxis;
     private Transform _followTarget;
 
@@ -51,10 +54,15 @@ public class CameraController : MonoBehaviour
 
     private void CamRotate()
     {
+#if MOUSE_SCREEN_ROTATE_CAMERA
+
         _rotAxisX = _centralAxis.rotation.x + Managers.Input.MouseRotInputY;
         _rotAxisY = _centralAxis.rotation.y + Managers.Input.MouseRotInputX;
 
         _centralAxis.rotation = Quaternion.Euler(new Vector3(_rotAxisX, _rotAxisY, 0) * _camSpeed);
+#else
+        
+#endif
     }
 
     private void CamMove()

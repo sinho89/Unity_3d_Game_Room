@@ -64,6 +64,9 @@ public class Defines
     public enum UIEvents
     {
         Click,
+        ClickUp,
+        ClickDown,
+        BeginDrag,
         Drag,
     }
 }
