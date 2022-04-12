@@ -22,6 +22,7 @@ public abstract class ActorController : MonoBehaviour
     protected float _currentSpeed =>
         new Vector2(_characterController.velocity.x, _characterController.velocity.z).magnitude;
 
+    public Defines.Actors ActorsType { get; protected set; } = Defines.Actors.Unknown;
     public abstract void Init();
     private void Start()
     {

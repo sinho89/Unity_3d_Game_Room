@@ -1,0 +1,23 @@
+{
+  "stats": [
+    {
+      "level": "1",
+      "maxHP": "200",
+      "attack": "20",
+      "totalExp": "0"
+    },
+    {
+      "level": "2",
+      "maxHP": "250",
+      "attack": "25",
+      "totalExp": "10"
+    },
+    {
+      "level": "3",
+      "maxHP": "300",
+      "attack": "30",
+      "totalExp": "20"
+    }
+  ]
+
+}

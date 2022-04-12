@@ -8,16 +8,25 @@ public class LobbyScene : BaseScene
     {
         base.Init();
 
-        SceneType = Defines.Scenes.Lobby;
+        SceneSetting();
+        CommonSetting();
+
     }
 
-    private void Update()
+    protected override void SceneSetting()
     {
-        
+        //Scene Setting
+        SceneType = Defines.Scenes.Lobby;
+        SceneName = "Lobby";
+    }
+
+    protected override void CommonSetting()
+    {
+        base.CommonSetting();
     }
 
     public override void Clear()
     {
-
+        Debug.Log("LobbyScene Clear");
     }
 }

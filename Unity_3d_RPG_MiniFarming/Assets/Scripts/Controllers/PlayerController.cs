@@ -28,6 +28,9 @@ public class PlayerController : ActorController
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
 
+        ActorsType = Defines.Actors.Player;
+        //_stat = gameObject.GetComponent<Stat>();
+
         _moveSpeed = 15.0f;
         _jumpVelocity = 5.0f;
     }

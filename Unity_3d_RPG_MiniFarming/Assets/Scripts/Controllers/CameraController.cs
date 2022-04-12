@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField]
     private Transform _centralAxis;
-    [SerializeField]
     private Transform _followTarget;
 
     private float _camSpeed;
@@ -17,6 +15,13 @@ public class CameraController : MonoBehaviour
 
     private float _followDistX;
     private float _followDistY;
+
+    public void SetCentralAxis(Transform centralaxis) 
+    { 
+        _centralAxis = centralaxis;
+        transform.SetParent(centralaxis);
+    }
+    public void SetFollowTarget(Transform followtarget) { _followTarget = followtarget; }
 
 
     private void Start()
@@ -60,8 +65,6 @@ public class CameraController : MonoBehaviour
         float dist = 0.0f;
 
         Vector3 delta = transform.position - _followTarget.position;
-
-        Debug.DrawRay(_followTarget.position + (Vector3.up * 1.0f), delta, Color.red);
 
         if (Physics.Raycast(_followTarget.position + (Vector3.up * 1.0f), delta, out hit, layerMask))
         {

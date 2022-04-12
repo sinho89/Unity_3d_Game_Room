@@ -12,6 +12,15 @@ public class Defines
         Game,
     }
 
+    public enum Actors
+    {
+        Unknown,
+        Player,
+        Monster,
+        Npc,
+        Envis,
+    }
+
     public enum ActorStates
     {
         Idle = 0,
