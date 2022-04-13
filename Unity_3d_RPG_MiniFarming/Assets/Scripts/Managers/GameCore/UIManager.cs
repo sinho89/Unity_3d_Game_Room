@@ -61,7 +61,9 @@ public class UIManager
         if(string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
+        string sceneName = Managers.Scene.CurrentScene.SceneName;
+
+        GameObject go = Managers.Resource.Instantiate($"{sceneName}/UI/SubItem/{name}");
         if (parent != null)
             go.transform.SetParent(parent);
 
@@ -73,7 +75,9 @@ public class UIManager
         if(string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+        string sceneName = Managers.Scene.CurrentScene.SceneName;
+
+        GameObject go = Managers.Resource.Instantiate($"{sceneName}/UI/Scene/{name}");
         T sceneUI = Utils.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
 
@@ -87,7 +91,9 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
+        string sceneName = Managers.Scene.CurrentScene.SceneName;
+
+        GameObject go = Managers.Resource.Instantiate($"{sceneName}/UI/Popup/{name}");
         T popup = Utils.GetOrAddComponent<T>(go);
         _popupStack.Push(popup);
 

@@ -37,8 +37,13 @@ public abstract class BaseScene : MonoBehaviour
         foreach (Transform child in EnterLights)
             Managers.UI.MakeWorldSpaceUI<UI_Interaction>(child.transform);
 
+        //Joystick Setting
+        Managers.UI.ShowSceneUI<UI_Joystick>();
+
         //Camera Setting
-        GameObject centralAxis = new GameObject { name = "@Camera" };
+        GameObject centralAxis = new GameObject { name = "camPivot" };
+        centralAxis.GetOrAddComponent<FollowObject>().SetFollowTarget(player.transform);
+
         CameraController cc = Camera.main.gameObject.GetOrAddComponent<CameraController>();
         cc.SetCentralAxis(centralAxis.transform);
         cc.SetFollowTarget(player.transform);

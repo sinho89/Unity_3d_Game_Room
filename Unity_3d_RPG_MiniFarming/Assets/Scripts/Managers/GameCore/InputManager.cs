@@ -1,3 +1,6 @@
+//#define PC_BASE_INPUT
+#define MOBILE_JOYSTICK_BASE_INPUT
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +8,7 @@ using UnityEngine;
 
 public class InputManager
 {
+#if PC_BASE_INPUT
     // PC Input
     public Action<Defines.KeyboardEvents> _keyAction = null;
     public Action<Defines.MouseEvents> _mouseAction = null;
@@ -36,11 +40,69 @@ public class InputManager
     private float _minWheelValue = -3.0f;
     private float _maxWheelValue = -1.0f;
 
+#else
+
+    // Player Move
+    public float _joystickHorizontal = 0.0f;
+    public float _joystickVertical   = 0.0f;
+    public Vector2 MoveInput { get; private set; } // x, y
+
+    // Cam Rotate
+    public float _originAngleX = 0.0f;
+    public float _originAngleY = 0.0f;
+    public float _tempAngleX   = 0.0f;
+    public float _tempAngleY   = 0.0f;
+
+    public float _beginX       = 0.0f;
+    public float _dragX        = 0.0f;
+    public float _beginY       = 0.0f;
+    public float _dragY        = 0.0f;
+    public Vector4 CamRotateInput { get; private set; } // bx,dx,by,dy
+
+    // Cam Zoom
+    public float     _wheelValue = 0.0f;
+    public int       _touchCount = 0;
+    public Vector2[] _touches = { };
+    public bool      _touchMoveCheck = false;
+    public float     _touchDist = 0.0f;
+    public float     _touchOldDist = 0.0f;
+    public float     _camFOV = 0.0f;
+
+
+#endif
+
     public void Init()
     {
-        MouseWheelValue = -1.5f;
+#if PC_BASE_INPUT
+        PcBaseInputInit();
+#else
+        JostickBaseInputInit();
+#endif
     }
     public void OnUpdate()
+    {
+#if PC_BASE_INPUT
+        PcBaseInputUpdate();
+#else
+        JostickBaseInputUpdate();
+#endif
+    }
+    public void Clear()
+    {
+
+#if PC_BASE_INPUT
+        PcBaseInputClear();
+#else
+        JostickBaseInputClear();
+#endif
+    }
+#if PC_BASE_INPUT
+    public void PcBaseInputInit()
+    {
+
+    }
+
+    public void PcBaseInputUpdate()
     {
         if (Input.anyKey && _keyAction != null)
         {
@@ -122,14 +184,49 @@ public class InputManager
                 _IsLeftPressed = false;
                 _pressedLeftTime = 0.0f;
             }
-
-
         }
     }
-
-    public void Clear()
+    public void PcBaseInputClear()
     {
         _keyAction = null;
-        _mouseAction = null;
+        _mouseAction = null; 
     }
+#else
+    public void JostickBaseInputInit()
+    {
+
+    }
+    public void JostickBaseInputUpdate()
+    {
+        MoveInput = new Vector2(_joystickHorizontal, _joystickVertical);
+        CamRotateInput = new Vector4(_beginX, _dragX, _beginY, _dragY);
+
+        _touchCount = Input.touchCount;
+
+        if (_touchCount == 2)
+        {
+            for (int i = 0; i < _touchCount; i++)
+                _touches[i] = Input.touches[i].position;
+
+            _touchMoveCheck = (Input.touches[0].phase == TouchPhase.Moved || Input.touches[1].phase == TouchPhase.Moved);
+
+            _touchDist = (Input.touches[0].position - Input.touches[1].position).sqrMagnitude;
+
+            float fDis = (_touchDist - _touchOldDist) * 0.01f;
+
+            _camFOV -= fDis;
+
+            _wheelValue = Mathf.Clamp(_camFOV, 20.0f, 100.0f);
+
+            _touchOldDist = _touchDist;
+        }
+        else
+            _touchMoveCheck = false;
+
+    }
+    public void JostickBaseInputClear()
+    {
+
+    }
+#endif
 }

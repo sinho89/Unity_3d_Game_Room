@@ -1,3 +1,6 @@
+//#define PC_BASE_CONTROLLER
+#define MOBILE_JOYSTICK_BASE_CONTROLLER
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +20,6 @@ public class PlayerController : ActorController
 
     public override void Init()
     {
-        //PC Input
-        Managers.Input._keyAction -= OnKeyBoard;
-        Managers.Input._keyAction += OnKeyBoard;
-
-        Managers.Input._mouseAction -= OnMouse;
-        Managers.Input._mouseAction += OnMouse;
-
         _followCam = Camera.main;
         _characterController = GetComponent<CharacterController>();
         _anim = GetComponent<Animator>();
@@ -35,19 +31,8 @@ public class PlayerController : ActorController
         _jumpVelocity = 5.0f;
     }
 
-    private void OnKeyBoard(Defines.KeyboardEvents evt)
-    {
-
-    }
-
-    private void OnMouse(Defines.MouseEvents evt)
-    {
-
-    }
-
     private void Moving()
     {
-
         float speed = _moveSpeed * Managers.Input.MoveInput.magnitude;
 
         Vector3 camForwardDir = new Vector3(_followCam.transform.forward.x, 0, _followCam.transform.forward.z);
@@ -64,16 +49,16 @@ public class PlayerController : ActorController
 
         // 카메라 회전값 적용
         transform.rotation = Quaternion.Lerp(transform.rotation,
-        Quaternion.LookRotation(new Vector3(_followCam.transform.forward.x, 0, _followCam.transform.forward.z)), Time.deltaTime * 10.0f);
-
-        _anim.SetFloat("MoveX", Managers.Input.MoveInput.x);
-        _anim.SetFloat("MoveY", Managers.Input.MoveInput.y);
-
+        Quaternion.LookRotation(new Vector3(moveDir.x, 0, moveDir.z)), Time.deltaTime * 10.0f);
 
         if (_characterController.isGrounded)
         {
             _currentVelocityY = 0;
         }
+
+
+        _anim.SetFloat("MoveX", Managers.Input.MoveInput.x);
+        _anim.SetFloat("MoveY", Managers.Input.MoveInput.y);
     }
 
 }
