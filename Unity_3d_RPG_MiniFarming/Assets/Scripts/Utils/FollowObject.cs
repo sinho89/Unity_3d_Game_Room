@@ -11,6 +11,6 @@ public class FollowObject : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 pos = this.transform.position;
-        this.transform.position = Vector3.Lerp(pos, _followTarget.position + (Vector3.up * 1.0f), 0.3f);
+        this.transform.position = Vector3.Lerp(pos, _followTarget.position + (Vector3.up * 0.5f), 0.3f);
     }
 }
