@@ -221,8 +221,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 10877412, guid: 10b4213a276bd0f4d93c345fd1420858, type: 3}
+      propertyPath: m_Range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 10877412, guid: 10b4213a276bd0f4d93c345fd1420858, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 10877412, guid: 10b4213a276bd0f4d93c345fd1420858, type: 3}
       propertyPath: m_RenderMode
@@ -4365,6 +4369,10 @@ PrefabInstance:
     - target: {fileID: 4357512191844229388, guid: 91d62e11a71cfdf4593241a780bf2a67, type: 3}
       propertyPath: m_Lightmapping
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357512192288317173, guid: 91d62e11a71cfdf4593241a780bf2a67, type: 3}
+      propertyPath: m_Intensity
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4357512192288317173, guid: 91d62e11a71cfdf4593241a780bf2a67, type: 3}
       propertyPath: m_RenderMode

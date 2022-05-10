@@ -10,7 +10,7 @@ public class LobbyScene : BaseScene
 
         LobbyInit();
 
-        Managers.Sound.Play("BGM/LobbyBgm", Defines.Sounds.Bgm, 0.5f);
+        //Managers.Sound.Play("BGM/LobbyBgm", Defines.Sounds.Bgm, 0.5f);
 
     }
 
@@ -44,6 +44,10 @@ public class LobbyScene : BaseScene
         //Joystick Setting
         Transform camRotator = Managers.UI.ShowSceneUI<UI_Joystick>().transform.Find("CamRotator");
         camRotator.gameObject.GetOrAddComponent<UI_CamRotator>().SetCamPivot(camPivot.transform);
+
+        //Button Setting
+        Managers.UI.ShowSceneUI<UI_EnterButton>();
+
     }
 
     public override void Clear()

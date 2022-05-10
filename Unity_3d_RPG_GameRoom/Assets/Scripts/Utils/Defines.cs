@@ -9,7 +9,8 @@ public class Defines
         Unknown,
         Login,
         Lobby,
-        Game,
+        Game1,
+        Game2,
     }
 
     public enum Actors
