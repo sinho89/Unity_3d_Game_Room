@@ -7,19 +7,18 @@ public class LobbyScene : BaseScene
     protected override void Init()
     {
         base.Init();
-
-        LobbyInit();
-
-        //Managers.Sound.Play("BGM/LobbyBgm", Defines.Sounds.Bgm, 0.5f);
-
     }
 
-    private void LobbyInit()
+    protected override void SceneSetting()
     {
-        //Scene Setting
+        //Scene Setting (SceneType, SceneName, SceneBGM)
         SceneType = Defines.Scenes.Lobby;
         SceneName = "Lobby";
+        Managers.Sound.Play($"{SceneName}/Bgm", Defines.Sounds.Bgm, 0.5f);
+    }
 
+    protected override void ObjectInit()
+    {
         //Player Setting
         GameObject player = Managers.Actor.Spawn(Defines.Actors.Player, $"{SceneName}/Player/Player");
         PlayerController pc = player.GetOrAddComponent<PlayerController>();
@@ -47,11 +46,10 @@ public class LobbyScene : BaseScene
 
         //Button Setting
         Managers.UI.ShowSceneUI<UI_EnterButton>();
-
     }
 
     public override void Clear()
     {
-        Debug.Log("LobbyScene Clear");
+        Debug.Log($"{SceneName} Clear");
     }
 }

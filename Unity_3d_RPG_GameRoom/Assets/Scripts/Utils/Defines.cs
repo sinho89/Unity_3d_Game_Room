@@ -9,8 +9,7 @@ public class Defines
         Unknown,
         Login,
         Lobby,
-        Game1,
-        Game2,
+        Raise_Assasin,//(3d_RPG)
     }
 
     public enum Actors
@@ -27,32 +26,9 @@ public class Defines
         Idle = 0,
         Move,
         Attack,
+        Casting,
+        Hit,
         Die,
-        Jump,
-    }
-
-    public enum KeyboardEvents
-    {
-        MoveButtonDown = 0,
-        MoveButtonUp,
-        MoveButtonPressing,
-        JumpButtonDown,
-        JumpButtonUp,
-        JumpButtonPressing,
-    }
-
-    public enum MouseEvents
-    {
-        LeftPress = 0,
-        LeftPointerDown,
-        LeftPonterUp,
-        LeftClick,
-        RightPress,
-        RightPointerDown,
-        RightPonterUp,
-        RightClick,
-        BeginDrag,
-        Drag,
     }
 
     public enum Sounds

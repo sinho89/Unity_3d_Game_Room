@@ -8,14 +8,14 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_Instance; } }
 
     #region Core
-    ActorManager _actor = new ActorManager();
-    DataManager _data = new DataManager();
-    InputManager _input = new InputManager();
-    PoolManager _pool = new PoolManager();
-    ResourceManager _resource = new ResourceManager();
-    SceneManagerEx _scene = new SceneManagerEx();
-    SoundManager _sound = new SoundManager();
-    UIManager _ui = new UIManager();
+    ActorManager _actor = new ActorManager();           // Dictionary기반 게임상의 Object를 관리하는 Manager
+    DataManager _data = new DataManager();              // Dictionary기반 Json파일을 파싱하여 Data를 관리하는 Manager
+    InputManager _input = new InputManager();           // Key조작과 관련된 변수들을 관리하는 Manager
+    PoolManager _pool = new PoolManager();              // Dictionary기반 Pooling Object가 담긴 Stack Pool을 관리하는 Manager 
+    ResourceManager _resource = new ResourceManager();  // Prefabs 기반 Object를 생성 및 소멸 관리하는 Manager
+    SceneManagerEx _scene = new SceneManagerEx();       // Scene의 이동을 관리하는 Manager
+    SoundManager _sound = new SoundManager();           // SoundType기반의 배열로 이루어진 AudioSource를 통해 Clip을 달아 Sound를 출력 관리하는 Manager ( Clips => Dictionary 관리)
+    UIManager _ui = new UIManager();                    // UI 생성을 관리하고 PopUp창과 같은 SordID와 컨테이너롤 통해 관리하기 용이한 UI를 Stack 컨테이너로 관리 
 
     public static ActorManager Actor { get { return Instance._actor; } }
     public static DataManager Data { get { return Instance._data; } }
@@ -34,7 +34,6 @@ public class Managers : MonoBehaviour
 
     private void Update()
     {
-        _input.OnUpdate();
     }
 
     private static void Init()
@@ -59,11 +58,13 @@ public class Managers : MonoBehaviour
     }
 
     public static void Clear()
-    {
+    { 
+        Actor.Clear();
+        Data.Clear();
         Input.Clear();
-        Sound.Clear();
-        Scene.Clear();
-        UI.Clear();
         Pool.Clear();
+        Scene.Clear();
+        Sound.Clear();
+        UI.Clear();
     }
 }

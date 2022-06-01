@@ -86,4 +86,8 @@ public class ActorManager
 
         Managers.Resource.Destroy(go);
     }
+    public void Clear()
+    {
+
+    }
 }
