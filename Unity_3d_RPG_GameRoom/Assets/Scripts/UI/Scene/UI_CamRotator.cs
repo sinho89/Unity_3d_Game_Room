@@ -15,10 +15,14 @@ public class UI_CamRotator : UI_Scene
         // 이벤트 바인딩 (드래그와 드래그시작 이벤트)
         BindEvent(gameObject, OnDrag, Defines.UIEvents.Drag);
         BindEvent(gameObject, OnBeginDrag, Defines.UIEvents.BeginDrag);
+        
+        if (_camPivot != null)
+        {
+            Managers.Input._originAngleX = _camPivot.rotation.eulerAngles.x;
+            Managers.Input._originAngleY = _camPivot.rotation.eulerAngles.y;
+        }
 
         // Angle & Speed Setting
-        Managers.Input._originAngleX = _camPivot.rotation.eulerAngles.x;
-        Managers.Input._originAngleY = _camPivot.rotation.eulerAngles.y;
 
         _camRotateSpeed = 5.0f;
     }
@@ -40,7 +44,11 @@ public class UI_CamRotator : UI_Scene
         if (xAngle < -5) xAngle = -5;
 
         // _camPivot Rotation 최종 설정
-        _camPivot.rotation = Quaternion.Euler(xAngle, yAngle, 0.0f);
+
+        if (_camPivot != null)
+        {
+            _camPivot.rotation = Quaternion.Euler(xAngle, yAngle, 0.0f);
+        }
 
     }
     public void OnBeginDrag(PointerEventData eventData)

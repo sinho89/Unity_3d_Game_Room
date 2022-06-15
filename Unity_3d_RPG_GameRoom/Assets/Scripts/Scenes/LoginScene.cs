@@ -15,7 +15,8 @@ public class LoginScene : BaseScene
     }
     protected override void ObjectInit()
     {
-
+        Managers.UI.ShowSceneUI<UI_LoginBack>();
+        Managers.UI.ShowSceneUI<UI_LoginButton>();
     }
 
     public override void Clear()

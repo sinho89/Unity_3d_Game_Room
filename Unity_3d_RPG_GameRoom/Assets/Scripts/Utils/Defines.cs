@@ -10,6 +10,7 @@ public class Defines
         Login,
         Lobby,
         Raise_Assasin,//(3d_RPG)
+        Air_Battle,//(2d_AirBattle)
     }
 
     public enum Actors

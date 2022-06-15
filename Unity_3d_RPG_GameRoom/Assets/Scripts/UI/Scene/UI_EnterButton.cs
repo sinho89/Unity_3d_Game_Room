@@ -8,8 +8,4 @@ public class UI_EnterButton : UI_Scene
     {
         gameObject.SetActive(false);
     }
-    private void Update()
-    {
-        //Managers.Scene.LoadScene(Define.Scene.Game);
-    }
 }

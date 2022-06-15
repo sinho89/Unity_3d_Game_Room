@@ -14,7 +14,7 @@ public class LobbyScene : BaseScene
         //Scene Setting (SceneType, SceneName, SceneBGM)
         SceneType = Defines.Scenes.Lobby;
         SceneName = "Lobby";
-        Managers.Sound.Play($"{SceneName}/Bgm", Defines.Sounds.Bgm, 0.5f);
+        //Managers.Sound.Play($"{SceneName}/Bgm", Defines.Sounds.Bgm, 0.5f);
     }
 
     protected override void ObjectInit()
